@@ -96,7 +96,7 @@ def analyze_stock(req: AnalysisRequest):
         news_context = "News search unavailable. Rely on technicals."
 
     # Step 4: Synthesis
-    # Mistral Instruct Prompt Format
+    # Instruct Prompt Format
     prompt = (
         f"Tu es un Analyste Financier Expert francophone. Synthétise les données suivantes pour {ticker} en un paragraphe clair et concis en FRANÇAIS.\n\n"
         f"--- SOURCES DE DONNÉES ---\n"
