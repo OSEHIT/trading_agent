@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  stock-api:
+    build: 
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: stock-api
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./src:/app/src  # Hot reload logic
+      - model_data:/app/model_data
+      - ./agent_service/reporting:/app/reporting
+    environment:
+      - PYTHONPATH=/app
+    depends_on:
+      - monitoring-service
+
+  stock-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.ui
+    container_name: stock-ui
+    ports:
+      - "8081:8081"
+    environment:
+      - API_URL=http://stock-api:8080
+    volumes:
+      - ./agent_service/reporting:/app/reporting
+    depends_on:
+      - stock-api
+
+  monitoring-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.monitoring
+    container_name: monitoring-service
+    ports:
+      - "8082:8082"
+    volumes:
+      - model_data:/app/model_data
+      - ./agent_service/reporting:/app/reporting
+
+  agent-service:
+    build:
+      context: ./agent_service
+      dockerfile: Dockerfile
+    container_name: agent-service
+    ports:
+      - "8083:8083"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - stock-api
+      - monitoring-service
+    volumes:
+      - model_data:/app/model_data
+      - ./agent_service:/app
+
+volumes:
+  model_data:

@@ -1,0 +1,31 @@
+# User specified ignores
+trigger_drift.py
+trigger_drift.oy
+stock-mlops-implementation*
+advanced-stock_pipeline.py
+debug_evidently*
+.agent/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Docker
+.dockerignore
+
+# IDES
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
