@@ -142,14 +142,6 @@ st.sidebar.markdown("---")
 import json
 import os
 
-# ... (imports)
-
-# ... (rest of code)
-
-# --- SIDEBAR: MODEL HEALTH ---
-st.sidebar.title("🛡️ Gardien du Modèle")
-st.sidebar.markdown("---")
-
 # Real Metric Check
 st.sidebar.subheader("État du Système")
 
@@ -210,7 +202,7 @@ st.sidebar.markdown("---")
 st.sidebar.info("v3.1.0 | Env: Production")
 
 # --- MAIN CONTROLS ---
-st.title("⚡ Terminal Boursier MLOps")
+st.title("⚡Stock Insights Terminal")
 
 col_search, col_act = st.columns([3, 1])
 with col_search:
