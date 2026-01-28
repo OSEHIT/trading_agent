@@ -5,6 +5,9 @@ stock-mlops-implementation.py
 advanced-stock_pipeline.py
 debug_evidently.py
 debug_output.txt
+SPEECH.md
+PRESENTATION.md
+TECHNICAL_DETAILS.md
 .agent/
 
 # Python

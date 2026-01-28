@@ -10,7 +10,7 @@ services:
       - "8080:8080"
     volumes:
       - ./src:/app/src  # Hot reload logic
-      - model_data:/app/model_data
+      - ./model_data:/app/model_data
       - ./agent_service/reporting:/app/reporting
     environment:
       - PYTHONPATH=/app
@@ -39,7 +39,7 @@ services:
     ports:
       - "8082:8082"
     volumes:
-      - model_data:/app/model_data
+      - ./model_data:/app/model_data
       - ./agent_service/reporting:/app/reporting
 
   agent-service:
@@ -55,8 +55,7 @@ services:
       - stock-api
       - monitoring-service
     volumes:
-      - model_data:/app/model_data
+      - ./model_data:/app/model_data
       - ./agent_service:/app
 
-volumes:
-  model_data:
+

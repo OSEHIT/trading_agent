@@ -310,15 +310,29 @@ if predict_btn or ticker:
                     
                     with b1:
                         if st.button("🟢 Je Valide", use_container_width=True):
-                            # Send positive feedback
-                            # requests.post(...)
-                            st.session_state.feedback_submitted = True
-                            st.toast("Feedback Enregistré ! (+10 XP)", icon="✅")
+                            # Send positive feedback (Target Price)
+                            try:
+                                requests.post(f"{API_URL}/feedback", json={
+                                    "ticker": ticker,
+                                    "actual_price": data['target_price'] # Reinforce prediction
+                                })
+                                st.session_state.feedback_submitted = True
+                                st.toast("Feedback Enregistré ! (+10 XP)", icon="✅")
+                            except Exception as e:
+                                st.error(f"Erreur d'envoi: {e}")
                             
                     with b2:
                         if st.button("🔴 Je Conteste", use_container_width=True):
-                             st.session_state.feedback_submitted = True
-                             st.toast("Signalé pour révision. Merci !", icon="🚩")
+                             # Send negative feedback (Current Price or lower)
+                             try:
+                                requests.post(f"{API_URL}/feedback", json={
+                                    "ticker": ticker,
+                                    "actual_price": current_price # Reinforce current, penalize prediction if drift
+                                })
+                                st.session_state.feedback_submitted = True
+                                st.toast("Signalé pour révision. Merci !", icon="🚩")
+                             except Exception as e:
+                                st.error(f"Erreur d'envoi: {e}")
                              
                     with b3:
                         if st.session_state.feedback_submitted:
