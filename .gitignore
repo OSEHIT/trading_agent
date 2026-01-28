@@ -1,9 +1,10 @@
 # User specified ignores
 trigger_drift.py
 trigger_drift.oy
-stock-mlops-implementation*
+stock-mlops-implementation.py
 advanced-stock_pipeline.py
-debug_evidently*
+debug_evidently.py
+debug_output.txt
 .agent/
 
 # Python
