@@ -87,7 +87,3 @@ Le système surveille en permanence la stabilité des données. Si les données 
 ## 🤝 Contribution
 
 Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une "Issue" ou une "Pull Request".
-
-## 📄 Licence
-
-Distribué sous la licence MIT. Voir `LICENSE` pour plus d'informations.
